@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { PrintService } from '../services/print.service';
 
 
 @NgModule({
@@ -16,4 +17,6 @@ import { HomePageRoutingModule } from './home-routing.module';
   ],
   declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule {
+  constructor(public print: PrintService) {}
+}
