@@ -9,11 +9,21 @@
     <ion-card-header>
       <ion-card-title>Confirmación de datos</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <p><strong>Nombre:</strong> {{ data.nombre }}</p>
-      <p><strong>Producto:</strong> {{ data.producto }}</p>
-      <p><strong>Cantidad:</strong> {{ data.cantidad }}</p>
-    </ion-card-content>
+    @if (data) {
+      <ion-card-subtitle>Datos ingresados:</ion-card-subtitle>
+      <ion-card-content>
+        <p><strong>Nombre:</strong> {{ data.nombre }}</p>
+        <p><strong>Producto:</strong> {{ data.producto }}</p>
+        <p><strong>Cantidad:</strong> {{ data.cantidad }}</p>
+      </ion-card-content>
+
+      <ion-button expand="block" (click)="print()">
+        Imprimir
+      </ion-button>
+    } @else {
+      <ion-card-subtitle>No hay datos disponibles.</ion-card-subtitle>
+    }
+    
   </ion-card>
 
   <ion-button expand="block" color="success" (click)="print()">Imprimir</ion-button>

@@ -6,7 +6,6 @@ import { Capacitor } from '@capacitor/core';
 // }
 
 declare var sunmiPrinter: any; // SDK expuesto en runtime
-
 @Injectable({
   providedIn: 'root'
 })
@@ -56,7 +55,5 @@ export class PrintService {
       console.error('Error al imprimir:', e);
     }
   }
-
-
 
 }
