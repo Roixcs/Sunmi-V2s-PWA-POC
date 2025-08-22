@@ -17,14 +17,11 @@
         <p><strong>Cantidad:</strong> {{ data.cantidad }}</p>
       </ion-card-content>
 
-      <ion-button expand="block" (click)="print()">
+      <ion-button expand="block" color="success" (click)="print()">
         Imprimir
       </ion-button>
     } @else {
       <ion-card-subtitle>No hay datos disponibles.</ion-card-subtitle>
     }
-    
   </ion-card>
-
-  <ion-button expand="block" color="success" (click)="print()">Imprimir</ion-button>
 </ion-content>
