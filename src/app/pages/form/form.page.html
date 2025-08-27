@@ -5,22 +5,48 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (ngSubmit)="save()">
+  <form [formGroup]="form" (ngSubmit)="save()" class="p-4">
+
     <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
-      <ion-input [(ngModel)]="formData.nombre" name="nombre" required></ion-input>
+      <ion-label position="floating">Vale</ion-label>
+      <ion-input formControlName="vale"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Producto</ion-label>
-      <ion-input [(ngModel)]="formData.producto" name="producto" required></ion-input>
+      <ion-label position="floating">Placa</ion-label>
+      <ion-input formControlName="placa"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Cantidad</ion-label>
-      <ion-input type="number" [(ngModel)]="formData.cantidad" name="cantidad" required></ion-input>
+      <ion-label position="floating">Piloto</ion-label>
+      <ion-input formControlName="piloto"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" type="submit" class="ion-margin-top">Guardar</ion-button>
+    <ion-item>
+      <ion-label position="floating">Viaje</ion-label>
+      <ion-input formControlName="viaje"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Galones</ion-label>
+      <ion-input type="number" formControlName="galones"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Combustible</ion-label>
+      <ion-select formControlName="combustible">
+        @for (item of combustibles; track $index) {
+          <ion-select-option [value]="item">{{item.nombre}}</ion-select-option>
+        }
+      </ion-select>     
+      <!-- <ion-select formControlName="combustible">
+        <ion-select-option value="">Diesel</ion-select-option>
+        <ion-select-option value="Gasolina">Gasolina</ion-select-option>
+      </ion-select> -->
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid">
+      Guardar e Imprimir
+    </ion-button>
   </form>
 </ion-content>

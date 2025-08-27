@@ -5,11 +5,13 @@ import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { IonicModule } from '@ionic/angular';
+import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideIonicAngular(),
     provideRouter(routes),
+    provideHttpClient(),
     importProvidersFrom(
       IonicModule.forRoot({})
     ),

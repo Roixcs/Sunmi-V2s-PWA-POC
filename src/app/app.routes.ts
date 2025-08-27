@@ -5,7 +5,8 @@ import { FormPage } from './pages/form/form.page';
 import { PreviewPage } from './pages/preview/preview.page';
 
 export const routes: Routes = [
-  { path: '', component: HomePage },
+  { path: 'home', component: HomePage },
+  { path: '', redirectTo: 'form', pathMatch: 'full' },
   { path: 'form', component: FormPage },
   { path: 'preview', component: PreviewPage },
 ];

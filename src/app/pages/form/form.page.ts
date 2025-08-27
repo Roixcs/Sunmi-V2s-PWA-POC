@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
+import { CombustibleType, PrintTicketData } from 'src/app/models/printTicketData';
 import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
@@ -10,22 +11,60 @@ import { DataService } from 'src/app/services/data/data.service';
   standalone: true,
   templateUrl: './form.page.html',
   styleUrls: ['./form.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule] // Add any necessary imports here, such as Ionic components
+  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule]
 })
 export class FormPage {
 
-  formData = {
-    nombre: '',
-    producto: '',
-    cantidad: ''
-  };
+  // formData: PrintTicketData = {
+  //   vale: '',
+  //   //fecha: new Date().toLocaleString(), //para versiones futuras
+  //   placa: '',
+  //   piloto: '',
+  //   viaje: '',
+  //   galones: 0,
+  //   combustible: { id: 0, nombre: '' },
+  // };
+
+  form!: FormGroup;
+
+  combustibles: CombustibleType[] = [
+    { id: 1, nombre: 'Gasolina' },
+    { id: 2, nombre: 'Diésel' },
+  ];
 
   constructor(private router: Router,
-              private dataService: DataService) {}
+              private dataService: DataService,
+              private navCtrl: NavController,
+              private fb: FormBuilder,) {}
 
+              
   save() {
-    this.dataService.setData(this.formData);
-    this.router.navigate(['/preview']);
+    if (this.form.valid) {
+      const formData : PrintTicketData  = this.form.value;
+      this.dataService.setData(formData);
+      this.router.navigate(['/preview']);      
+    }
+  }
+
+  // onSubmit() {
+  //   if (this.form.valid) {
+  //     const ticket: PrintTicketData = this.form.value;
+  //     this.dataService.setData(ticket);
+  //     this.dataService.saveToBackend(ticket).subscribe(() => {
+  //       this.navCtrl.navigateForward('/preview');
+  //     });
+  //   }
+  // }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      vale: ['', Validators.required],
+      placa: ['', Validators.required],
+      piloto: ['', Validators.required],
+      viaje: ['', Validators.required],
+      galones: [0, [Validators.required, Validators.min(1)]],
+      combustible: [null, Validators.required],
+    });
   }
 
 }
