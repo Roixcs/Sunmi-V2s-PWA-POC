@@ -3,7 +3,7 @@
 POC de impresión en **Sunmi V2s (modelo T5940, Android 11)** usando:
 - Ionic + Angular (UI)
 - Capacitor (bridge nativo)
-- Plugin [`@kduma-autoid/capacitor-sunmi-printer`](https://www.npmjs.com/package/@kduma-autoid/capacitor-sunmi-printer)
+- Plugin [`@roixcs/capacitor-sunmi-printer`](https://www.npmjs.com/package/@roixcs/capacitor-sunmi-printer)
 
 ## Requisitos
 - Node.js LTS (18 o 20)

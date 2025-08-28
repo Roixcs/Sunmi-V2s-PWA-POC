@@ -7,6 +7,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:dev": "ng build --configuration development --base-href /pwa-despacho-combustible/",
+    "build:prod": "ng build --configuration production --base-href /pwa-despacho-combustible/",
+    "build:android:dev": "npm run build:dev && npx cap copy android && npx cap sync android",
+    "build:android:pro": "npm run build:prod && npx cap copy android && npx cap sync android",
+    "android": "npm run build:android && npx cap open android",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
